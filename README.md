@@ -5,3 +5,5 @@ This README file contains information about my uploaded assignments
 My name is Thomas
 Boo 
 Hello, its me
+Country Road
+My name is Suki 
