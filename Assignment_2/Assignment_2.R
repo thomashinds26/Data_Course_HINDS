@@ -61,7 +61,7 @@
 
 # Doing assignment 2
 # 4
-csv_files <- list.files(path="/Data_Course/Data", pattern = '.csv')
+csv_files <- list.files(path="Data_Course/Data", pattern = '.csv')
 
 # 5
 length(csv_files)
