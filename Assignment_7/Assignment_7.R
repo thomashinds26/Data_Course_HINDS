@@ -61,7 +61,7 @@ religions = t(religions)
 irreligiosity_religion_correlations = t(irreligiosity_religion_correlations)
 data.frame(religions, irreligiosity_religion_correlations)
 plot(data_cleaned$`Pct_Non-Religious`, data_cleaned$`Pct_Episcopal Church`)
-plot(data_cleaned$`Pct_Non-Religious`, data_cleaned$`LDS`)
+plot(data_cleaned$`Pct_Non-Religious`, data_cleaned$`Pct_LDS`)
 #There are two strong correlations between the proportion of non-religious people and 
 # the proportion of specific religions.
 #The proportion of members of the Episcopal Church shows a moderately strong positive correlation 
