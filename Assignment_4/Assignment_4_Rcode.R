@@ -4,7 +4,7 @@ install.packages('tidyverse')
 library(ggplot)
 library(tidyverse)
 
-Fake_COVID_data <- read_csv(Fake_COVID_data)
+Fake_COVID_data <- read_csv('Assignment_4/Fake_COVID_data.csv')
 
 covid_state_means <- data.frame(
   state = colnames(Fake_COVID_data)[2:6],
