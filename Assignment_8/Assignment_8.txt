@@ -1,0 +1,5 @@
+1. In my model, Temperature and Nitrogen are statistically meaninglesss because their p-values are greater that 0.05 so we fail to reject the null hypothesis at the 95% confidence level.
+
+2. Nitrogen and Growth Rate look to have a nonlinear relationship (they have an upside down parabola if Growth Rate is the outcome). https://techvidvan.com/tutorials/nonlinear-regression-in-r/
+
+3. nlr_linear_model <- lm(response ~ predictor, data = read_csv("Assignment_8/non_linear_relationship.csv"))
