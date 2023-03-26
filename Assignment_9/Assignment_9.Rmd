@@ -1,0 +1,55 @@
+---
+title: "Assignment 9"
+output: html_document
+date: "2023-03-26"
+---
+
+## First Let's load our libraries and our data, and take a brief look at our data
+```{r}
+library(tidyverse)
+library(ggplot2)
+data <- read.csv("GradSchool_Admissions.csv")
+head(data)
+```
+
+## Next we build our model and examine it
+
+Since the outcome must be either 0 or 1, we will use a logistic regression model to predict the probability of admission (if the probability is equal to or above 50%, we will predict admission, otherwise we will not.)
+``` {r}
+model <- glm(admit ~.,family=binomial(link='logit'),data=data)
+summary(model)
+```
+## Interpreting our model summary
+You can see above that each coefficient is significant at the 95% confidence level, so we'll continue to use it instead of searching for another model. 
+The coefficient on the GRE score is .002294, which means the log-odds increase by .002294 for every increased point on the GRE. This means that for every additional point scored on the GRE, the odds of admission increase by .2297%.
+The coefficient on the GPA is 0.777014, which means the log-odds increase by 0.777014 for every increased GPA point. This means that for every additional GPA point earned, the odds of admission increase by 217.4968%.
+The coefficient on the rank is -0.560031, which means the log-odds decrease by 0.560031 for every worsened (increased) tier level. This means that for every tier level worsened (increased), the odds of admission decrease by 57.11914%.
+
+## Now we generate the predictions of our model and compare them to our outcomes
+```{r}
+predictions <- ifelse(predict(model,data=data, type='response') >= .5, 1,0)
+hist(data$admit)
+hist(predictions)
+```
+There are 127 admissions in the true data, but only 49 admissions were predicted.
+```{r}
+num_correct <- 0
+for (i in 1:400) {
+  if (predictions[i] == data$admit[i]) {
+    num_correct <- num_correct + 1
+  }
+}
+pct_correct <- num_correct/400
+pct_correct
+```
+70.5% of predictions are correct.
+
+```{r}
+plot(density(predictions-data$admit), main = 'Residual Density Plot')
+```
+The model is more likely to incorrectly state that they weren't admitted when they really were than the reverse, but it is more likely to get it correct than either of those.
+
+Here are some additional plots that are helpful for evaluating the model.
+```{r}
+plot(model)
+```
